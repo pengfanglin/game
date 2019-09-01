@@ -22,7 +22,7 @@ pipeline {
         branch 'test'
       }
       steps {
-        sh 'gradle build publishMavenPublicationToNexusRepository -x test --refresh-dependencies'
+        sh 'gradle build publishMavenPublicationToNexusRepository -Penv=test -x test --refresh-dependencies'
         sh 'docker build -t ${dockerUrl}/${buildName}:${buildVersion}-test .'
         sh 'docker login -u admin -p 123456 ${dockerUrl}'
         sh 'docker push ${dockerUrl}/${buildName}:${buildVersion}-test'
