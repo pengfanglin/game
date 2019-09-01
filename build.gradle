@@ -3,7 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
-group 'com.qjz'
+group 'com.game'
 version '1.0.0'
 
 apply plugin: 'java-library'
@@ -18,7 +18,7 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-def env = project.hasProperty('env') && project.property("env") == "pro" ? "pro" : "dev"
+def env = project.hasProperty('env') ? project.property('env') : "dev"
 def jarVersionSuffix = env == "pro" ? "-RELEASE" : "-SNAPSHOT"
 
 ext {
