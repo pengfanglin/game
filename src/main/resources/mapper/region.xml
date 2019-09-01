@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.mapper.RegionMapper">
+  <resultMap id="regionProvince" type="regionTreeModel">
+    <result column="code1" property="code"/>
+    <result column="parent_code1" property="parentCode"/>
+    <result column="name1" property="name"/>
+    <association property="children" resultMap="regionCity"/>
+  </resultMap>
+  <resultMap id="regionCity" type="regionTreeModel">
+    <result column="code2" property="code"/>
+    <result column="parent_code2" property="parentCode"/>
+    <result column="name2" property="name"/>
+    <association property="children" resultMap="regionArea"/>
+  </resultMap>
+
+  <resultMap id="regionArea" type="regionTreeModel">
+    <result column="code3" property="code"/>
+    <result column="parent_code3" property="parentCode"/>
+    <result column="name3" property="name"/>
+  </resultMap>
+
+  <select id="regionTree" resultMap="regionProvince">
+    select a.code        as code1,
+           a.name        as name1,
+           a.parent_code as parent_code1,
+           b.code        as code2,
+           b.name        as name2,
+           b.parent_code as parent_code2,
+           c.code        as code3,
+           c.name        as name3,
+           c.parent_code as parent_code3
+    from region as a
+           left join region as b
+                     on a.code = b.parent_code
+           left join region as c
+                     on b.code = c.parent_code
+    where a.parent_code = 0
+    order by a.code, b.code, c.code
+  </select>
+</mapper>

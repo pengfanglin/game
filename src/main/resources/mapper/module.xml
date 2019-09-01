@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.game.mapper.ModuleMapper">
+  <resultMap type="moduleTreeModel" id="parentModules">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="url" property="url"/>
+    <result column="parent_id" property="parentId"/>
+    <result column="sort" property="sort"/>
+    <result column="create_time" property="createTime"/>
+    <association property="children" resultMap="childModules"/>
+  </resultMap>
+  <resultMap type="moduleTreeModel" id="childModules">
+    <id column="id1" property="id"/>
+    <result column="name1" property="name"/>
+    <result column="url1" property="url"/>
+    <result column="parent_id1" property="parentId"/>
+    <result column="sort1" property="sort"/>
+    <result column="create_time1" property="createTime"/>
+  </resultMap>
+
+  <select id="moduleTree" resultMap="parentModules">
+    SELECT
+    a.id,
+    a.name,
+    a.url,
+    a.parent_id,
+    a.sort,
+    a.create_time,
+    b.id AS id1,
+    b.name AS name1,
+    b.url AS url1,
+    b.parent_id AS parent_id1,
+    b.sort AS sort1,
+    b.create_time AS create_time1
+    FROM
+    module AS a
+    INNER JOIN module AS b
+    ON a.id = b.parent_id
+    <if test=" accountId !=null ">
+      INNER JOIN
+      (SELECT
+      GROUP_CONCAT(module_ids) module_ids
+      FROM
+      role
+      WHERE FIND_IN_SET(
+      id,
+      (SELECT
+      role_ids
+      FROM
+      admin_account
+      WHERE id = #{accountId})
+      )) AS c
+      ON FIND_IN_SET(a.id, c.module_ids) AND FIND_IN_SET(b.id, c.module_ids)
+    </if>
+    ORDER BY a.sort desc,b.sort desc,a.id,b.id
+  </select>
+</mapper>
