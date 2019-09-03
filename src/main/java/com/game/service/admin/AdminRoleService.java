@@ -1,7 +1,7 @@
 package com.game.service.admin;
 
+import com.fanglin.common.core.page.Page;
 import com.fanglin.common.core.page.PageResult;
-import com.game.core.page.Page;
 import com.game.model.role.account.AccountListModel;
 import com.game.model.role.account.AddAccountModel;
 import com.game.model.role.account.UpdateAccountModel;

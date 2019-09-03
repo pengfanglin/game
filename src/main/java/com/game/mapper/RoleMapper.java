@@ -1,8 +1,8 @@
 package com.game.mapper;
 
-import com.game.core.page.Page;
 import com.game.entity.role.RoleEntity;
 import com.game.model.role.role.RoleListModel;
+import com.github.pagehelper.PageRowBounds;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -24,5 +24,5 @@ public interface RoleMapper extends Mapper<RoleEntity> {
      * @return
      */
     @Select("select id,name,disable,sort,create_time,module_ids from role order by id")
-    List<RoleListModel> roleList(Page page);
+    List<RoleListModel> roleList(PageRowBounds page);
 }

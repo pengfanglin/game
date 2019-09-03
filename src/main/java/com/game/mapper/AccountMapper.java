@@ -1,8 +1,8 @@
 package com.game.mapper;
 
-import com.game.core.page.Page;
 import com.game.entity.role.AccountEntity;
 import com.game.model.role.account.AccountListModel;
+import com.github.pagehelper.PageRowBounds;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
@@ -30,10 +30,10 @@ public interface AccountMapper extends Mapper<AccountEntity> {
     /**
      * 系统账号列表
      *
-     * @param account  账号
+     * @param account 账号
      * @param disable 是否禁用
-     * @param page      分页
+     * @param page    分页
      * @return
      */
-    List<AccountListModel> accountList(@Param("account") String account, @Param("disable") Boolean disable, Page page);
+    List<AccountListModel> accountList(@Param("account") String account, @Param("disable") Boolean disable, PageRowBounds page);
 }
