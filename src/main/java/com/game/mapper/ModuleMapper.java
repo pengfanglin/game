@@ -1,9 +1,9 @@
 package com.game.mapper;
 
-import com.game.core.page.Page;
 import com.game.entity.role.ModuleEntity;
 import com.game.model.role.model.ModuleListModel;
 import com.game.model.role.model.ModuleTreeModel;
+import com.github.pagehelper.PageRowBounds;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
@@ -26,7 +26,7 @@ public interface ModuleMapper extends Mapper<ModuleEntity> {
      * @return
      */
     @Select("select * from module where parent_id=#{parentId} order by sort desc,id")
-    List<ModuleListModel> moduleList(@Param("parentId") Integer parentId, Page page);
+    List<ModuleListModel> moduleList(@Param("parentId") Integer parentId, PageRowBounds page);
 
     /**
      * 系统账号左侧菜单树

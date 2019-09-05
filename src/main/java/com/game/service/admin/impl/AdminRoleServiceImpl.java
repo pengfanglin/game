@@ -3,12 +3,11 @@ package com.game.service.admin.impl;
 import com.fanglin.common.annotation.RedisCache;
 import com.fanglin.common.annotation.RedisCacheRemove;
 import com.fanglin.common.core.others.Assert;
+import com.fanglin.common.core.page.Page;
 import com.fanglin.common.core.page.PageResult;
 import com.fanglin.common.core.token.TokenInfo;
 import com.fanglin.common.utils.*;
 import com.game.core.others.AdminTokenData;
-import com.game.core.others.AppTokenData;
-import com.game.core.page.Page;
 import com.game.entity.role.AccountEntity;
 import com.game.entity.role.ModuleEntity;
 import com.game.entity.role.RoleEntity;
@@ -25,6 +24,7 @@ import com.game.model.role.role.RoleListModel;
 import com.game.model.role.role.UpdateRoleModel;
 import com.game.model.user.UserLoginResultModel;
 import com.game.service.admin.AdminRoleService;
+import com.github.pagehelper.PageRowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,7 +63,8 @@ public class AdminRoleServiceImpl implements AdminRoleService {
 
     @Override
     public PageResult<ModuleListModel> moduleList(Integer parentId, Page page) {
-        return new PageResult<>(mapperFactory.module.moduleList(parentId==null?0:parentId, page), page.getTotal());
+        PageRowBounds rowBounds = PageUtils.rowBounds(page);
+        return new PageResult<>(mapperFactory.module.moduleList(parentId == null ? 0 : parentId, rowBounds), rowBounds.getTotal());
     }
 
     @RedisCacheRemove("'module_tree'")
@@ -85,7 +86,7 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     @Override
     public void updateModule(UpdateModuleModel module) {
         ValidatorUtils.validate(module);
-        if(OthersUtils.notEmpty(module.getUrl())){
+        if (OthersUtils.notEmpty(module.getUrl())) {
             Assert.isTrue(mapperFactory.module.selectCount(new ModuleEntity().setUrl(module.getUrl())) == 0, "路由已存在");
         }
         int count = mapperFactory.module.updateByPrimaryKeySelective(BeanUtils.copy(module, ModuleEntity.class));
@@ -94,7 +95,8 @@ public class AdminRoleServiceImpl implements AdminRoleService {
 
     @Override
     public PageResult<RoleListModel> roleList(Page page) {
-        return new PageResult<>(mapperFactory.role.roleList(page), page.getTotal());
+        PageRowBounds rowBounds = PageUtils.rowBounds(page);
+        return new PageResult<>(mapperFactory.role.roleList(rowBounds), rowBounds.getTotal());
     }
 
     @Override
@@ -118,13 +120,14 @@ public class AdminRoleServiceImpl implements AdminRoleService {
 
     @Override
     public PageResult<AccountListModel> accountList(String account, Boolean disable, Page page) {
-        return new PageResult<>(mapperFactory.account.accountList(account, disable, page), page.getTotal());
+        PageRowBounds rowBounds = PageUtils.rowBounds(page);
+        return new PageResult<>(mapperFactory.account.accountList(account, disable, rowBounds), rowBounds.getTotal());
     }
 
     @Override
     public void updateAccount(UpdateAccountModel account) {
         ValidatorUtils.validate(account);
-        if(OthersUtils.notEmpty(account.getAccount())){
+        if (OthersUtils.notEmpty(account.getAccount())) {
             Assert.isTrue(mapperFactory.account.selectCount(new AccountEntity().setAccount(account.getAccount())) == 0, "账号已存在");
         }
         int count = mapperFactory.account.updateByPrimaryKeySelective(BeanUtils.copy(account, AccountEntity.class));

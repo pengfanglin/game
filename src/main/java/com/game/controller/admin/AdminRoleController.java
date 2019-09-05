@@ -2,10 +2,10 @@ package com.game.controller.admin;
 
 import com.fanglin.common.annotation.Token;
 import com.fanglin.common.core.others.Ajax;
+import com.fanglin.common.core.page.Page;
 import com.fanglin.common.core.page.PageResult;
 import com.game.controller.common.BaseController;
 import com.game.core.others.AdminTokenData;
-import com.game.core.page.Page;
 import com.game.model.role.account.AccountListModel;
 import com.game.model.role.account.AddAccountModel;
 import com.game.model.role.account.UpdateAccountModel;
