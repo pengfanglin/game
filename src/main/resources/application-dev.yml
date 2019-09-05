@@ -5,6 +5,8 @@ server:
     worker-threads: 128
     buffer-size: 1024
     direct-buffers: true
+netty:
+  port:
 mybatis:
   type-aliases-package: com.game.entity,com.game.model
   mapper-locations: classpath:mapper/*.xml

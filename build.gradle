@@ -29,6 +29,7 @@ ext {
     swaggerVersion = '2.9.2'
     alipayVersion = '3.3.4.ALL'
     mysqlVersion = '8.0.11'
+    nettyVersion = '4.1.39.Final'
 }
 
 repositories {
@@ -68,6 +69,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web") {
         exclude module: 'spring-boot-starter-tomcat'
     }
+    implementation("io.netty:netty-all:${nettyVersion}")
 }
 
 publishing {
