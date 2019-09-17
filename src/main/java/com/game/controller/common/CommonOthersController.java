@@ -2,7 +2,7 @@ package com.game.controller.common;
 
 import com.fanglin.common.annotation.Token;
 import com.fanglin.common.core.others.Ajax;
-import com.fanglin.common.utils.UploadUtils;
+import com.fanglin.common.util.UploadUtils;
 import com.game.core.others.AppTokenData;
 import com.game.enums.others.AuthCodeTypeEnum;
 import com.game.enums.others.CodeTypeEnum;

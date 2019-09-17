@@ -2,7 +2,7 @@ package com.game.service.app.impl;
 
 import com.fanglin.common.core.others.Assert;
 import com.fanglin.common.core.token.TokenInfo;
-import com.fanglin.common.utils.*;
+import com.fanglin.common.util.*;
 import com.game.core.others.AppTokenData;
 import com.game.entity.user.UserEntity;
 import com.game.enums.others.CodeTypeEnum;

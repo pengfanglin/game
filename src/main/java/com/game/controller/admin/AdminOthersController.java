@@ -2,7 +2,7 @@ package com.game.controller.admin;
 
 import com.fanglin.common.annotation.Token;
 import com.fanglin.common.core.others.Ajax;
-import com.fanglin.common.utils.UploadUtils;
+import com.fanglin.common.util.UploadUtils;
 import com.game.core.others.AppTokenData;
 import com.game.enums.others.AuthCodeTypeEnum;
 import com.game.enums.others.CodeTypeEnum;
@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
  **/
 @RestController
 @RequestMapping("/admin/others/")
+@Token("admin")
 @Api(value = "/admin/others/", tags = {"后台-其他"})
 public class AdminOthersController {
 
@@ -38,7 +39,6 @@ public class AdminOthersController {
         @ApiImplicitParam(name = "files", value = "图片文件", required = true),
         @ApiImplicitParam(name = "path", value = "保存路径", defaultValue = "/files/others")
     })
-    @Token("admin")
     @PostMapping("uploadFiles")
     public Ajax uploadFiles(@RequestParam("files") MultipartFile[] files, String path) {
         return UploadUtils.uploadFiles(files, false, path);
@@ -49,7 +49,6 @@ public class AdminOthersController {
         @ApiImplicitParam(name = "type", value = "验证码类型", required = true)
     })
     @PostMapping("sendAuthCode")
-    @Token("admin")
     public Ajax sendCode(AppTokenData tokenData, @RequestParam AuthCodeTypeEnum type) {
         commonOthersService.sendCode(tokenData.getMobile(), type.toString());
         return Ajax.ok("发送成功");
@@ -60,7 +59,6 @@ public class AdminOthersController {
         @ApiImplicitParam(name = "type", value = "验证码类型", required = true)
     })
     @PostMapping("sendAuthCodeTest")
-    @Token("admin")
     public Ajax sendAuthCodeTest(AppTokenData tokenData, @RequestParam AuthCodeTypeEnum type) {
         String code = commonOthersService.sendTestCode(tokenData.getMobile(), type.toString());
         return Ajax.ok(code);

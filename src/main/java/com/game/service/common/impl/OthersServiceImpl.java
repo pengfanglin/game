@@ -1,9 +1,9 @@
 package com.game.service.common.impl;
 
 import com.fanglin.common.annotation.LocalCache;
-import com.fanglin.common.utils.JedisUtils;
-import com.fanglin.common.utils.OthersUtils;
-import com.fanglin.common.utils.SmsUtils;
+import com.fanglin.common.util.JedisUtils;
+import com.fanglin.common.util.OthersUtils;
+import com.fanglin.common.util.SmsUtils;
 import com.game.enums.others.RedisKeyEnum;
 import com.game.mapper.MapperFactory;
 import com.game.model.region.RegionTreeModel;

@@ -2,8 +2,8 @@ package com.game.controller.admin;
 
 import com.fanglin.common.core.aop.LocalCacheAop;
 import com.fanglin.common.core.others.Ajax;
-import com.fanglin.common.utils.JedisUtils;
-import com.fanglin.common.utils.JvmUtils;
+import com.fanglin.common.util.JedisUtils;
+import com.fanglin.common.util.JvmUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

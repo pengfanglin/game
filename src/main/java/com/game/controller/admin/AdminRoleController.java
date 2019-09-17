@@ -1,5 +1,6 @@
 package com.game.controller.admin;
 
+import com.fanglin.common.annotation.NoToken;
 import com.fanglin.common.annotation.Token;
 import com.fanglin.common.core.others.Ajax;
 import com.fanglin.common.core.page.Page;
@@ -42,6 +43,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/role/")
 @Api(value = "/admin/role/", tags = {"后台-权限"})
+@Token("admin")
 public class AdminRoleController extends BaseController {
     @Autowired
     AdminRoleService roleService;
@@ -52,6 +54,7 @@ public class AdminRoleController extends BaseController {
         @ApiImplicitParam(name = "password", value = "密码", required = true)
     })
     @PostMapping("login")
+    @NoToken
     public Ajax<UserLoginResultModel> login(HttpServletResponse response, @RequestParam String account, @RequestParam String password) {
         return Ajax.ok(roleService.login(response, account, password));
     }
@@ -61,14 +64,12 @@ public class AdminRoleController extends BaseController {
         @ApiImplicitParam(name = "account", value = "用户名"),
         @ApiImplicitParam(name = "disable", value = "是否禁用")
     })
-    @Token("admin")
     @PostMapping("accountList")
     public Ajax<PageResult<AccountListModel>> accountList(String account, Boolean disable, Page page) {
         return Ajax.ok(roleService.accountList(account, disable, page));
     }
 
     @ApiOperation("修改系统账号")
-    @Token("admin")
     @PostMapping("updateAccount")
     public Ajax updateAccount(UpdateAccountModel account) {
         roleService.updateAccount(account);
@@ -76,7 +77,6 @@ public class AdminRoleController extends BaseController {
     }
 
     @ApiOperation("添加系统账号")
-    @Token("admin")
     @PostMapping("addAccount")
     public Ajax addAccount(AddAccountModel account) {
         roleService.addAccount(account);
@@ -84,7 +84,6 @@ public class AdminRoleController extends BaseController {
     }
 
     @ApiOperation("删除系统账号")
-    @Token("admin")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "id", value = "账号id", required = true),
     })
@@ -95,7 +94,6 @@ public class AdminRoleController extends BaseController {
     }
 
     @ApiOperation("系统模块树")
-    @Token("admin")
     @PostMapping("moduleTree")
     public Ajax<List<ModuleTreeModel>> moduleTree() {
         return Ajax.ok(roleService.moduleTree());
@@ -105,7 +103,6 @@ public class AdminRoleController extends BaseController {
     @ApiImplicitParams({
         @ApiImplicitParam(name = "id", value = "账号id", required = true),
     })
-    @Token("admin")
     @PostMapping("leftMenuTree")
     public Ajax<List<ModuleTreeModel>> leftMenuTree(AdminTokenData tokenData) {
         return Ajax.ok(roleService.leftMenuTree(tokenData.getId()));
@@ -115,14 +112,12 @@ public class AdminRoleController extends BaseController {
     @ApiImplicitParams({
         @ApiImplicitParam(name = "parentId", value = "父节点id，根节点为0", required = true),
     })
-    @Token("admin")
     @PostMapping("moduleList")
     public Ajax<PageResult<ModuleListModel>> moduleList(Integer parentId, Page page) {
         return Ajax.ok(roleService.moduleList(parentId, page));
     }
 
     @ApiOperation("添加系统模块")
-    @Token("admin")
     @PostMapping("addModule")
     public Ajax addModule(AddModuleModel module) {
         roleService.addModule(module);
@@ -133,7 +128,6 @@ public class AdminRoleController extends BaseController {
     @ApiImplicitParams({
         @ApiImplicitParam(name = "id", value = "模块id", required = true)
     })
-    @Token("admin")
     @PostMapping("deleteModule")
     public Ajax deleteModule(@RequestParam Integer id) {
         roleService.deleteModule(id);
@@ -141,7 +135,6 @@ public class AdminRoleController extends BaseController {
     }
 
     @ApiOperation("修改系统模块")
-    @Token("admin")
     @PostMapping("updateModule")
     public Ajax updateModule(UpdateModuleModel module) {
         roleService.updateModule(module);
@@ -149,7 +142,6 @@ public class AdminRoleController extends BaseController {
     }
 
     @ApiOperation("添加角色")
-    @Token("admin")
     @PostMapping("addRole")
     public Ajax addRole(AddRoleModel role) {
         roleService.addRole(role);
@@ -160,7 +152,6 @@ public class AdminRoleController extends BaseController {
     @ApiImplicitParams({
         @ApiImplicitParam(name = "id", value = "角色id", required = true)
     })
-    @Token("admin")
     @PostMapping("deleteRole")
     public Ajax deleteRole(@RequestParam Integer id) {
         roleService.deleteRole(id);
@@ -168,7 +159,6 @@ public class AdminRoleController extends BaseController {
     }
 
     @ApiOperation("修改角色")
-    @Token("admin")
     @PostMapping("updateRole")
     public Ajax updateRole(UpdateRoleModel role) {
         roleService.updateRole(role);
@@ -176,7 +166,6 @@ public class AdminRoleController extends BaseController {
     }
 
     @ApiOperation("角色列表")
-    @Token("admin")
     @PostMapping("roleList")
     public Ajax<PageResult<RoleListModel>> roleList(Page page) {
         return Ajax.ok(roleService.roleList(page));
