@@ -1,8 +1,8 @@
 package com.game.mapper;
 
 import com.game.entity.role.ModuleEntity;
-import com.game.model.role.model.ModuleListModel;
-import com.game.model.role.model.ModuleTreeModel;
+import com.game.model.admin.role.module.ModuleListModel;
+import com.game.model.admin.role.module.ModuleTreeModel;
 import com.github.pagehelper.PageRowBounds;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

@@ -1,4 +1,4 @@
-package com.game.model.region;
+package com.game.model.common.region;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

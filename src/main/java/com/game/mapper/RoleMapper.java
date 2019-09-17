@@ -1,7 +1,7 @@
 package com.game.mapper;
 
 import com.game.entity.role.RoleEntity;
-import com.game.model.role.role.RoleListModel;
+import com.game.model.admin.role.role.RoleListModel;
 import com.github.pagehelper.PageRowBounds;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;

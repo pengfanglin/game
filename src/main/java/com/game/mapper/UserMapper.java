@@ -1,7 +1,7 @@
 package com.game.mapper;
 
 import com.game.entity.user.UserEntity;
-import com.game.model.user.UserModel;
+import com.game.model.app.user.UserModel;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;

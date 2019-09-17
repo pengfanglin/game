@@ -1,7 +1,7 @@
 package com.game.controller.app;
 
 import com.fanglin.common.core.others.Ajax;
-import com.game.model.user.UserLoginResultModel;
+import com.game.model.app.user.UserLoginResultModel;
 import com.game.service.app.AppUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

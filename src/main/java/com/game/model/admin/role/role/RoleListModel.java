@@ -1,4 +1,4 @@
-package com.game.model.role.role;
+package com.game.model.admin.role.role;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

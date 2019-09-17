@@ -1,6 +1,6 @@
 package com.game.service.common;
 
-import com.game.model.region.RegionTreeModel;
+import com.game.model.common.region.RegionTreeModel;
 
 import java.util.List;
 import java.util.Map;

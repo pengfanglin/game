@@ -1,12 +1,9 @@
 package com.game.controller.common;
 
-import com.fanglin.common.annotation.Token;
 import com.fanglin.common.core.others.Ajax;
 import com.fanglin.common.util.UploadUtils;
-import com.game.core.others.AppTokenData;
-import com.game.enums.others.AuthCodeTypeEnum;
 import com.game.enums.others.CodeTypeEnum;
-import com.game.model.region.RegionTreeModel;
+import com.game.model.common.region.RegionTreeModel;
 import com.game.service.common.CommonOthersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

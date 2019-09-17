@@ -1,7 +1,7 @@
 package com.game.mapper;
 
 import com.game.entity.role.AccountEntity;
-import com.game.model.role.account.AccountListModel;
+import com.game.model.admin.role.account.AccountListModel;
 import com.github.pagehelper.PageRowBounds;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

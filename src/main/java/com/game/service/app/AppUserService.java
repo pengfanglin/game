@@ -1,6 +1,6 @@
 package com.game.service.app;
 
-import com.game.model.user.UserLoginResultModel;
+import com.game.model.app.user.UserLoginResultModel;
 
 import javax.servlet.http.HttpServletResponse;
 

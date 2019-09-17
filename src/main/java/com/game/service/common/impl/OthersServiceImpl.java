@@ -6,7 +6,7 @@ import com.fanglin.common.util.OthersUtils;
 import com.fanglin.common.util.SmsUtils;
 import com.game.enums.others.RedisKeyEnum;
 import com.game.mapper.MapperFactory;
-import com.game.model.region.RegionTreeModel;
+import com.game.model.common.region.RegionTreeModel;
 import com.game.service.common.CommonOthersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

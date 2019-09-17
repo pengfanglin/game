@@ -1,4 +1,4 @@
-package com.game.model.role.role;
+package com.game.model.admin.role.role;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,12 +7,10 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 /**
- * 修改角色
+ * 添加角色
  *
  * @author 彭方林
  * @version 1.0
@@ -21,14 +19,10 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Accessors(chain = true)
-@ApiModel("修改角色")
-public class UpdateRoleModel {
-
-    @ApiModelProperty("ID")
-    @NotNull(message = "ID不能为空")
-    private Integer id;
-
+@ApiModel("添加角色")
+public class AddRoleModel {
     @ApiModelProperty("角色名称")
+    @NotBlank(message = "角色名称不能为空")
     @Length(max = 20, message = "角色名称最多20个字符")
     private String name;
 
@@ -38,7 +32,4 @@ public class UpdateRoleModel {
 
     @ApiModelProperty("权重")
     private Float sort;
-
-    @ApiModelProperty("是否禁用")
-    private Boolean disable;
 }

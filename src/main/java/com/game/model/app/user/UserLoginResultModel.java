@@ -1,4 +1,4 @@
-package com.game.model.user;
+package com.game.model.app.user;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

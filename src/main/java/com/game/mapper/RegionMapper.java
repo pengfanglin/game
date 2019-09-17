@@ -1,7 +1,7 @@
 package com.game.mapper;
 
 import com.game.entity.address.RegionEntity;
-import com.game.model.region.RegionTreeModel;
+import com.game.model.common.region.RegionTreeModel;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 
