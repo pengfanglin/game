@@ -20,8 +20,4 @@ import lombok.experimental.Accessors;
 public class AppTokenData extends DefaultTokenData {
 
     private Integer id;
-    /**
-     * 手机号
-     */
-    private String mobile;
 }

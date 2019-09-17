@@ -3,6 +3,7 @@ package com.game.controller.common;
 import com.fanglin.common.core.others.Ajax;
 import com.fanglin.common.util.UploadUtils;
 import com.game.enums.others.CodeTypeEnum;
+import com.game.enums.others.SettingTypeEnum;
 import com.game.model.common.region.RegionTreeModel;
 import com.game.service.common.CommonOthersService;
 import io.swagger.annotations.Api;
@@ -69,5 +70,11 @@ public class CommonOthersController {
     @PostMapping("regionTree")
     public Ajax<List<RegionTreeModel>> regionTree() {
         return Ajax.ok(commonOthersService.regionTree());
+    }
+
+    @ApiOperation("查询平台设置")
+    @PostMapping("getPlatformSetting")
+    public Ajax getPlatformSetting(@RequestParam SettingTypeEnum type) {
+        return Ajax.ok(commonOthersService.getPlatformSetting(type));
     }
 }

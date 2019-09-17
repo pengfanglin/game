@@ -1,4 +1,4 @@
-package com.game.model.app.user;
+package com.game.model.app.member;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel("用户登录返回对象")
-public class UserLoginResultModel {
+public class MemberLoginResultModel {
     @ApiModelProperty("鉴权token")
     private String accessToken;
     @ApiModelProperty("刷新token")

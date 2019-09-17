@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.game.mapper.AccountMapper">
-  <select id="accountList" resultType="accountListModel">
-    select id,account,username,head_image,disable from admin_account
+<mapper namespace="com.game.mapper.CompanyMapper">
+  <select id="companyList" resultType="companyListModel">
+    select id,account,name,balance,create_time from company
     <where>
       <if test=" account != null and account !=''">
         and account like concat('%',#{account},'%')
       </if>
-      <if test=" disable != null ">
-        and disable=#{disable}
+      <if test=" name != null and name !=''">
+        and name like concat('%',#{name},'%')
       </if>
     </where>
     order by id desc

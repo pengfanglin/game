@@ -17,7 +17,7 @@ import com.game.model.admin.role.module.UpdateModuleModel;
 import com.game.model.admin.role.role.AddRoleModel;
 import com.game.model.admin.role.role.RoleListModel;
 import com.game.model.admin.role.role.UpdateRoleModel;
-import com.game.model.app.user.UserLoginResultModel;
+import com.game.model.app.member.MemberLoginResultModel;
 import com.game.service.admin.AdminRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -55,7 +55,7 @@ public class AdminRoleController extends BaseController {
     })
     @PostMapping("login")
     @NoToken
-    public Ajax<UserLoginResultModel> login(HttpServletResponse response, @RequestParam String account, @RequestParam String password) {
+    public Ajax<MemberLoginResultModel> login(HttpServletResponse response, @RequestParam String account, @RequestParam String password) {
         return Ajax.ok(roleService.login(response, account, password));
     }
 
@@ -100,9 +100,6 @@ public class AdminRoleController extends BaseController {
     }
 
     @ApiOperation("左侧菜单树")
-    @ApiImplicitParams({
-        @ApiImplicitParam(name = "id", value = "账号id", required = true),
-    })
     @PostMapping("leftMenuTree")
     public Ajax<List<ModuleTreeModel>> leftMenuTree(AdminTokenData tokenData) {
         return Ajax.ok(roleService.leftMenuTree(tokenData.getId()));

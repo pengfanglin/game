@@ -6,6 +6,9 @@ import com.fanglin.common.util.UploadUtils;
 import com.game.core.others.AppTokenData;
 import com.game.enums.others.AuthCodeTypeEnum;
 import com.game.enums.others.CodeTypeEnum;
+import com.game.enums.others.SettingTypeEnum;
+import com.game.model.admin.others.SettingListModel;
+import com.game.service.admin.AdminOthersService;
 import com.game.service.common.CommonOthersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * 其他接口控制器
@@ -33,6 +38,8 @@ public class AdminOthersController {
 
     @Autowired
     CommonOthersService commonOthersService;
+    @Autowired
+    AdminOthersService adminOthersService;
 
     @ApiOperation("上传多个文件")
     @ApiImplicitParams({
@@ -44,23 +51,20 @@ public class AdminOthersController {
         return UploadUtils.uploadFiles(files, false, path);
     }
 
-    @ApiOperation("发送鉴权验证码")
+    @ApiOperation("修改平台设置")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "type", value = "验证码类型", required = true)
+        @ApiImplicitParam(name = "type", value = "设置类型", required = true),
+        @ApiImplicitParam(name = "value", value = "新的值", required = true),
     })
-    @PostMapping("sendAuthCode")
-    public Ajax sendCode(AppTokenData tokenData, @RequestParam AuthCodeTypeEnum type) {
-        commonOthersService.sendCode(tokenData.getMobile(), type.toString());
-        return Ajax.ok("发送成功");
+    @PostMapping("updatePlatformSetting")
+    public Ajax updatePlatformSetting(@RequestParam SettingTypeEnum type, @RequestParam String value) {
+        adminOthersService.updatePlatformSetting(type, value);
+        return Ajax.ok();
     }
 
-    @ApiOperation("发送测试鉴权验证码")
-    @ApiImplicitParams({
-        @ApiImplicitParam(name = "type", value = "验证码类型", required = true)
-    })
-    @PostMapping("sendAuthCodeTest")
-    public Ajax sendAuthCodeTest(AppTokenData tokenData, @RequestParam AuthCodeTypeEnum type) {
-        String code = commonOthersService.sendTestCode(tokenData.getMobile(), type.toString());
-        return Ajax.ok(code);
+    @ApiOperation("平台设置列表")
+    @PostMapping("platformSettingList")
+    public Ajax<List<SettingListModel>> platformSettingList() {
+        return Ajax.ok(adminOthersService.platformSettingList());
     }
 }

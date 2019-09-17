@@ -22,7 +22,7 @@ import com.game.model.admin.role.module.UpdateModuleModel;
 import com.game.model.admin.role.role.AddRoleModel;
 import com.game.model.admin.role.role.RoleListModel;
 import com.game.model.admin.role.role.UpdateRoleModel;
-import com.game.model.app.user.UserLoginResultModel;
+import com.game.model.app.member.MemberLoginResultModel;
 import com.game.service.admin.AdminRoleService;
 import com.github.pagehelper.PageRowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,7 +151,7 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     }
 
     @Override
-    public UserLoginResultModel login(HttpServletResponse response, String account, String password) {
+    public MemberLoginResultModel login(HttpServletResponse response, String account, String password) {
         AccountEntity accountEntity = mapperFactory.account.login(account);
         Assert.notNull(accountEntity, "用户不存在");
         Assert.isFalse(accountEntity.getDisable(), "账号已冻结");
@@ -159,6 +159,6 @@ public class AdminRoleServiceImpl implements AdminRoleService {
         AdminTokenData tokenData = new AdminTokenData(accountEntity.getId());
         TokenInfo tokenInfo = new TokenInfo().setData(tokenData).setType("admin").setRefreshTokenTimeout(0);
         TokenUtils.login(response, tokenInfo);
-        return new UserLoginResultModel(tokenInfo.getAssessToken(), tokenInfo.getRefreshToken());
+        return new MemberLoginResultModel(tokenInfo.getAssessToken(), tokenInfo.getRefreshToken());
     }
 }

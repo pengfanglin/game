@@ -1,4 +1,4 @@
-package com.game.model.app.user;
+package com.game.model.app.member;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,7 +19,7 @@ import java.util.Date;
 @Getter
 @Accessors(chain = true)
 @ApiModel("用户信息")
-public class UserModel {
+public class MemberModel {
     @ApiModelProperty("主键")
     private Integer id;
     @ApiModelProperty("手机号")

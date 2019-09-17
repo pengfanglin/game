@@ -15,7 +15,7 @@ public class MapperFactory {
     @Autowired
     public OthersMapper others;
     @Autowired
-    public UserMapper user;
+    public MemberMapper member;
     @Autowired
     public RegionMapper region;
     @Autowired
@@ -24,4 +24,8 @@ public class MapperFactory {
     public ModuleMapper module;
     @Autowired
     public RoleMapper role;
+    @Autowired
+    public SettingMapper setting;
+    @Autowired
+    public CompanyMapper company;
 }

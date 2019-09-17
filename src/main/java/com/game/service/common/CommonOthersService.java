@@ -1,5 +1,6 @@
 package com.game.service.common;
 
+import com.game.enums.others.SettingTypeEnum;
 import com.game.model.common.region.RegionTreeModel;
 
 import java.util.List;
@@ -40,4 +41,12 @@ public interface CommonOthersService {
      * @return
      */
     Map<Integer, String> regionCache();
+
+    /**
+     * 查询平台设置
+     *
+     * @param type
+     * @return
+     */
+    String getPlatformSetting(SettingTypeEnum type);
 }

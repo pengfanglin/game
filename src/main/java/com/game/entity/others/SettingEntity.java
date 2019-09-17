@@ -1,5 +1,6 @@
-package com.game.entity.user;
+package com.game.entity.others;
 
+import com.game.enums.others.SettingTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -10,17 +11,17 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * 用户
+ * 系统设置
  *
  * @author 彭方林
  * @version 1.0
- * @date 2019/8/28 13:06
+ * @date 2019/4/3 16:40
  **/
 @Setter
 @Getter
 @Accessors(chain = true)
-@Table(name = "user")
-public class UserEntity {
+@Table(name = "setting")
+public class SettingEntity {
     /**
      * 主键
      */
@@ -28,27 +29,23 @@ public class UserEntity {
     @KeySql(useGeneratedKeys = true)
     private Integer id;
     /**
-     * 手机号
+     * 名称
      */
-    private Long mobile;
+    private String name;
     /**
-     * 密码
+     * 值
      */
-    private String password;
+    private String value;
     /**
-     * 密码盐值
+     * 类型
      */
-    private String salt;
-    /**
-     * 是否禁用
-     */
-    private Boolean disable;
+    private SettingTypeEnum type;
     /**
      * 创建时间
      */
     private Date createTime;
     /**
-     * 修改时间
+     * 创建时间
      */
     private Date updateTime;
 }

@@ -5,6 +5,7 @@ import com.fanglin.common.util.JedisUtils;
 import com.fanglin.common.util.OthersUtils;
 import com.fanglin.common.util.SmsUtils;
 import com.game.enums.others.RedisKeyEnum;
+import com.game.enums.others.SettingTypeEnum;
 import com.game.mapper.MapperFactory;
 import com.game.model.common.region.RegionTreeModel;
 import com.game.service.common.CommonOthersService;
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2019/4/3 16:36
  **/
 @Service
-public class OthersServiceImpl implements CommonOthersService {
+public class CommonOthersServiceImpl implements CommonOthersService {
 
     @Autowired
     MapperFactory mapperFactory;
@@ -67,5 +68,10 @@ public class OthersServiceImpl implements CommonOthersService {
             cache.put(Integer.valueOf(item.get("code").toString()), item.get("name").toString());
         });
         return cache;
+    }
+
+    @Override
+    public String getPlatformSetting(SettingTypeEnum type) {
+        return mapperFactory.setting.getPlatformSetting(type);
     }
 }

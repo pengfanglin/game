@@ -12,7 +12,7 @@ import com.game.model.admin.role.module.UpdateModuleModel;
 import com.game.model.admin.role.role.AddRoleModel;
 import com.game.model.admin.role.role.RoleListModel;
 import com.game.model.admin.role.role.UpdateRoleModel;
-import com.game.model.app.user.UserLoginResultModel;
+import com.game.model.app.member.MemberLoginResultModel;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -136,5 +136,5 @@ public interface AdminRoleService {
      * @param password 密码
      * @return
      */
-    UserLoginResultModel login(HttpServletResponse response, String account, String password);
+    MemberLoginResultModel login(HttpServletResponse response, String account, String password);
 }
