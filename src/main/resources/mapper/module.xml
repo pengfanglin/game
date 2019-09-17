@@ -20,39 +20,50 @@
   </resultMap>
 
   <select id="moduleTree" resultMap="parentModules">
-    SELECT
-    a.id,
-    a.name,
-    a.url,
-    a.parent_id,
-    a.sort,
-    a.create_time,
-    b.id AS id1,
-    b.name AS name1,
-    b.url AS url1,
-    b.parent_id AS parent_id1,
-    b.sort AS sort1,
-    b.create_time AS create_time1
-    FROM
-    module AS a
-    INNER JOIN module AS b
-    ON a.id = b.parent_id
-    <if test=" accountId !=null ">
-      INNER JOIN
-      (SELECT
-      GROUP_CONCAT(module_ids) module_ids
-      FROM
-      role
-      WHERE FIND_IN_SET(
-      id,
-      (SELECT
-      role_ids
-      FROM
-      admin_account
-      WHERE id = #{accountId})
-      )) AS c
-      ON FIND_IN_SET(a.id, c.module_ids) AND FIND_IN_SET(b.id, c.module_ids)
-    </if>
-    ORDER BY a.sort desc,b.sort desc,a.id,b.id
+    SELECT a.id,
+           a.name,
+           a.url,
+           a.parent_id,
+           a.sort,
+           a.create_time,
+           b.id          AS id1,
+           b.name        AS name1,
+           b.url         AS url1,
+           b.parent_id   AS parent_id1,
+           b.sort        AS sort1,
+           b.create_time AS create_time1
+    FROM module AS a
+           LEFT JOIN module AS b
+                     ON a.id = b.parent_id
+    ORDER BY a.sort desc, b.sort desc, a.id, b.id
+  </select>
+  <select id="leftMenuTree" resultMap="parentModules">
+    SELECT a.id,
+           a.name,
+           a.url,
+           a.parent_id,
+           a.sort,
+           a.create_time,
+           b.id          AS id1,
+           b.name        AS name1,
+           b.url         AS url1,
+           b.parent_id   AS parent_id1,
+           b.sort        AS sort1,
+           b.create_time AS create_time1
+    FROM module AS a
+           INNER JOIN module AS b
+                      ON a.id = b.parent_id
+           INNER JOIN
+         (SELECT GROUP_CONCAT(module_ids) module_ids
+          FROM role
+          WHERE disable = 0
+            AND FIND_IN_SET(
+            id,
+            (SELECT role_ids
+             FROM admin_account
+             WHERE id = #{accountId})
+            )) AS c
+         ON FIND_IN_SET(a.id, c.module_ids) AND FIND_IN_SET(b.id, c.module_ids)
+    ORDER BY a.sort desc, b.sort desc, a.id, b.id
   </select>
 </mapper>

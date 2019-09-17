@@ -29,10 +29,17 @@ public interface ModuleMapper extends Mapper<ModuleEntity> {
     List<ModuleListModel> moduleList(@Param("parentId") Integer parentId, PageRowBounds page);
 
     /**
+     * 模块树
+     *
+     * @return
+     */
+    List<ModuleTreeModel> moduleTree();
+
+    /**
      * 系统账号左侧菜单树
      *
      * @param accountId 账号id
      * @return
      */
-    List<ModuleTreeModel> moduleTree(@Param("accountId") Integer accountId);
+    List<ModuleTreeModel> leftMenuTree(@Param("accountId") Integer accountId);
 }

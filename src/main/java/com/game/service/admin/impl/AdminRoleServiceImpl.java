@@ -53,12 +53,12 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     @RedisCache(value = "'module_tree'", timeout = 1, unit = TimeUnit.HOURS)
     @Override
     public List<ModuleTreeModel> moduleTree() {
-        return mapperFactory.module.moduleTree(null);
+        return mapperFactory.module.moduleTree();
     }
 
     @Override
     public List<ModuleTreeModel> leftMenuTree(Integer accountId) {
-        return mapperFactory.module.moduleTree(accountId);
+        return mapperFactory.module.leftMenuTree(accountId);
     }
 
     @Override
