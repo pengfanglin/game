@@ -53,7 +53,7 @@
            b.create_time AS create_time1
     FROM module AS a
            INNER JOIN module AS b
-                      ON a.id = b.parent_id
+                      ON a.parent_id = 0 and a.id = b.parent_id
            INNER JOIN
          (SELECT GROUP_CONCAT(module_ids) module_ids
           FROM role
