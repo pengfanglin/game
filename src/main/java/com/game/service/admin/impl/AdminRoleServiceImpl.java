@@ -87,7 +87,7 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     public void updateModule(UpdateModuleModel module) {
         ValidatorUtils.validate(module);
         if (OthersUtils.notEmpty(module.getUrl())) {
-            Assert.isTrue(mapperFactory.module.selectCount(new ModuleEntity().setUrl(module.getUrl())) == 0, "路由已存在");
+            Assert.isFalse(mapperFactory.module.urlExist(module.getId(), module.getUrl()), "路由已存在");
         }
         int count = mapperFactory.module.updateByPrimaryKeySelective(BeanUtils.copy(module, ModuleEntity.class));
         Assert.isTrue(count > 0, "修改失败");

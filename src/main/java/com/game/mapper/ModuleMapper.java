@@ -42,4 +42,14 @@ public interface ModuleMapper extends Mapper<ModuleEntity> {
      * @return
      */
     List<ModuleTreeModel> leftMenuTree(@Param("accountId") Integer accountId);
+
+    /**
+     * 路由是否已经存在
+     *
+     * @param id  模块id
+     * @param url 该模块新的url
+     * @return
+     */
+    @Select("SELECT (CASE WHEN (SELECT COUNT(*) FROM module WHERE id!=#{id} AND url=#{url})=0 THEN FALSE ELSE TRUE END) AS is_exist")
+    boolean urlExist(@Param("id") Integer id, @Param("url") String url);
 }
