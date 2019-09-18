@@ -35,6 +35,7 @@
     FROM module AS a
            LEFT JOIN module AS b
                      ON a.id = b.parent_id
+    where a.parent_id = 0
     ORDER BY a.sort desc, b.sort desc, a.id, b.id
   </select>
   <select id="leftMenuTree" resultMap="parentModules">
