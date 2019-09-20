@@ -35,7 +35,7 @@
     FROM module AS a
            LEFT JOIN module AS b
                      ON a.id = b.parent_id
-    where a.parent_id = 0
+    where a.parent_id = 0 and a.disable=0 and b.disable=0
     ORDER BY a.sort desc, b.sort desc, a.id, b.id
   </select>
   <select id="leftMenuTree" resultMap="parentModules">
@@ -53,7 +53,7 @@
            b.create_time AS create_time1
     FROM module AS a
            INNER JOIN module AS b
-                      ON a.parent_id = 0 and a.id = b.parent_id
+                      ON a.parent_id = 0 and a.id = b.parent_id and a.disable=0 and b.disable=0
            INNER JOIN
          (SELECT GROUP_CONCAT(module_ids) module_ids
           FROM role
