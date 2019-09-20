@@ -1,6 +1,7 @@
 package com.game.core.others;
 
 import com.fanglin.common.core.token.DefaultTokenData;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,6 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminTokenData extends DefaultTokenData {
-
+    @ApiModelProperty(hidden = true)
     private Integer id;
 }
