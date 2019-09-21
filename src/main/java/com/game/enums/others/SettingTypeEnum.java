@@ -1,6 +1,8 @@
 package com.game.enums.others;
 
 import com.fanglin.common.core.enums.CodeEnum;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

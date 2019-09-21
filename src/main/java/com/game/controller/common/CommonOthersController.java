@@ -28,7 +28,7 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/common/others/")
-@Api(value = "/common/others/", tags = {"公共", "其他"})
+@Api(value = "/common/others/", tags = {"公共-其他"})
 public class CommonOthersController {
 
     @Autowired
@@ -73,6 +73,9 @@ public class CommonOthersController {
     }
 
     @ApiOperation("查询平台设置")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "type", value = "PLATFORM_NAME:平台名称 PLATFORM_LOGO:平台logo CONTACT:联系方式 WX_LOGIN:微信登录 ACCOUNT_REGISTER:账号注册", required = true)
+    })
     @PostMapping("getPlatformSetting")
     public Ajax getPlatformSetting(@RequestParam SettingTypeEnum type) {
         return Ajax.ok(commonOthersService.getPlatformSetting(type));

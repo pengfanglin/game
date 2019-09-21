@@ -28,7 +28,7 @@ import java.util.Map;
  **/
 @RestController
 @RequestMapping("/admin/remote/")
-@Api(value = "/admin/remote", tags = {"管理端", "远程控制"})
+@Api(value = "/admin/remote", tags = {"后台-远程控制"})
 public class AdminRemoteController {
 
     @Autowired
