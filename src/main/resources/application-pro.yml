@@ -42,10 +42,6 @@ common:
     enable: true
     password: 123456
     host: 172.17.0.1
-  sms:
-    ali:
-      access-key-id: LTAI4Ff7n5i76MNMW7w3QNgu
-      access-secret: EC8YR9jVi1WE4rxVigvsev37bzwsZr
   swagger:
     enable: false
   http:

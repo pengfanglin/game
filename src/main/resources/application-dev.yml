@@ -43,10 +43,6 @@ common:
     enable: true
     password: 123456
     host: 47.101.151.125
-  sms:
-    ali:
-      access-key-id: LTAI4Ff7n5i76MNMW7w3QNgu
-      access-secret: EC8YR9jVi1WE4rxVigvsev37bzwsZr
   swagger:
     enable: true
     title: 24节气
