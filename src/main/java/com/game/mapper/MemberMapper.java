@@ -7,6 +7,7 @@ import com.game.model.app.member.MemberModel;
 import com.github.pagehelper.PageRowBounds;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -37,4 +38,14 @@ public interface MemberMapper extends Mapper<MemberEntity> {
      * @return
      */
     List<MemberListModel> memberList(MemberListSearch search, PageRowBounds rowBounds);
+
+    /**
+     * 增加余额
+     *
+     * @param memberId 会员id
+     * @param value    金额
+     * @return
+     */
+    @Update("UPDATE member SET balance=balance+#{value} WHERE id=#{memberId}")
+    int addBalance(@Param("memberId") Integer memberId, @Param("value") Float value);
 }

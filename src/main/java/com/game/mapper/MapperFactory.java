@@ -28,4 +28,6 @@ public class MapperFactory {
     public SettingMapper setting;
     @Autowired
     public CompanyMapper company;
+    @Autowired
+    public MemberFlowWaterMapper memberFlowWater;
 }

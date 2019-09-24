@@ -1,5 +1,6 @@
 package com.game.entity.member;
 
+import com.game.enums.member.MemberFlowWaterTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 会员
+ * 会员流水
  *
  * @author 彭方林
  * @version 1.0
@@ -20,8 +21,8 @@ import java.util.Date;
 @Setter
 @Getter
 @Accessors(chain = true)
-@Table(name = "member")
-public class MemberEntity {
+@Table(name = "member_flow_water")
+public class MemberFlowWaterEntity {
     /**
      * 主键
      */
@@ -31,35 +32,15 @@ public class MemberEntity {
     /**
      * 账号
      */
-    private String account;
+    private Integer member_id;
     /**
      * 手机号
      */
-    private Long mobile;
+    private MemberFlowWaterTypeEnum type;
     /**
      * 密码
      */
-    private String password;
-    /**
-     * 密码盐值
-     */
-    private String salt;
-    /**
-     * 用户名
-     */
-    private String username;
-    /**
-     * 公司id
-     */
-    private Integer companyId;
-    /**
-     * 余额
-     */
-    private BigDecimal balance;
-    /**
-     * 是否禁用
-     */
-    private Boolean disable;
+    private BigDecimal value;
     /**
      * 创建时间
      */

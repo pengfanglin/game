@@ -35,4 +35,11 @@ public interface AdminMemberService {
      * @param id 会员id
      */
     void deleteMember(Integer id);
+
+    /**
+     * 充值
+     * @param memberId 会员id
+     * @param value 充值金额
+     */
+    void topUp(Integer memberId, Float value);
 }

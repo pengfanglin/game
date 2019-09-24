@@ -1,27 +1,28 @@
-package com.game.enums.others;
+package com.game.enums.member;
 
+import com.fanglin.common.core.enums.CodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 需要鉴权的验证码类型
+ * 会员流水类型
  *
  * @author 彭方林
  * @version 1.0
  * @date 2019/5/16 20:27
  **/
 @AllArgsConstructor
-public enum AuthCodeTypeEnum {
+public enum MemberFlowWaterTypeEnum implements CodeEnum {
 
     /**
      * 找回密码
      */
-    FIND_PASSWORD("SMS_173246287"),
+    ADMIN_TOP_UP(0),
     /**
      * 修改密码
      */
-    UPDATE_PASSWORD("SMS_173246287");
+    MEMBER_TOP_UP(1);
 
     @Getter
-    private String code;
+    private int code;
 }

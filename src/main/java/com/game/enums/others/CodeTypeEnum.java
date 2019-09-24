@@ -1,5 +1,6 @@
 package com.game.enums.others;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Getter;
  * @version 1.0
  * @date 2019/5/16 20:27
  **/
+@AllArgsConstructor
 public enum CodeTypeEnum {
 
     /**
@@ -22,8 +24,4 @@ public enum CodeTypeEnum {
 
     @Getter
     private String code;
-
-    CodeTypeEnum(String code) {
-        this.code = code;
-    }
 }

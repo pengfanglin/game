@@ -1,6 +1,7 @@
 package com.game.service.app.impl;
 
 import com.fanglin.common.core.others.Assert;
+import com.fanglin.common.core.others.BusinessException;
 import com.fanglin.common.core.token.TokenInfo;
 import com.fanglin.common.util.*;
 import com.game.core.others.AppTokenData;
@@ -43,7 +44,13 @@ public class AppMemberServiceImpl implements AppMemberService {
 
     @Override
     public MemberLoginResultModel register(HttpServletResponse response, String account, String password) {
-        Assert.isTrue(account.length() <= 20, "账号最多20个字符");
+        Assert.isTrue(account.length() <= 10, "账号最多10个字符");
+        Assert.isTrue(account.length() >= 3, "账号最少3个字符");
+        try {
+            Long.parseLong(account);
+        } catch (Exception e) {
+            throw new BusinessException("账号只能为数字");
+        }
         Assert.isTrue(password.length() <= 20, "密码最多20个字符");
         MemberEntity member = new MemberEntity().setAccount(account);
         int count = mapperFactory.member.selectCount(member);

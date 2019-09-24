@@ -60,4 +60,15 @@ public class AdminMemberController extends BaseController {
         memberService.deleteMember(id);
         return Ajax.ok();
     }
+
+    @ApiOperation("充值")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "memberId", value = "会员id", required = true),
+        @ApiImplicitParam(name = "value", value = "充值金额", required = true)
+    })
+    @PostMapping("topUp")
+    public Ajax topUp(@RequestParam Integer memberId, @RequestParam Float value) {
+        memberService.topUp(memberId,value);
+        return Ajax.ok();
+    }
 }
