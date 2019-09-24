@@ -18,7 +18,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Accessors(chain = true)
-@Table(name = "service_city")
+@Table(name = "region")
 public class RegionEntity {
     /**
      * 地区编码
