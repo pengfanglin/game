@@ -3,6 +3,7 @@ package com.game.service.admin;
 
 import com.fanglin.common.core.page.Page;
 import com.fanglin.common.core.page.PageResult;
+import com.game.model.admin.member.AddMemberModel;
 import com.game.model.admin.member.MemberListModel;
 import com.game.model.admin.member.MemberListSearch;
 
@@ -25,10 +26,9 @@ public interface AdminMemberService {
 
     /**
      * 增加会员
-     * @param account 账号
-     * @param password 密码
+     * @param member 会员信息
      */
-    void addMember(String account, String password);
+    void addMember(AddMemberModel member);
 
     /**
      * 删除会员

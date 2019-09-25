@@ -2,6 +2,7 @@ package com.game.mapper;
 
 import com.game.entity.company.CompanyEntity;
 import com.game.entity.role.AccountEntity;
+import com.game.model.admin.company.CompanyIdNameModel;
 import com.game.model.admin.company.CompanyListModel;
 import com.game.model.admin.role.account.AccountListModel;
 import com.github.pagehelper.PageRowBounds;
@@ -38,4 +39,12 @@ public interface CompanyMapper extends Mapper<CompanyEntity> {
      * @return
      */
     List<CompanyListModel> companyList(@Param("account") String account, @Param("name") String name, PageRowBounds rowBounds);
+
+    /**
+     * 公司id名称搜索
+     *
+     * @param name 公司名称
+     * @return
+     */
+    List<CompanyIdNameModel> companyIdNameSearch(@Param("name") String name);
 }

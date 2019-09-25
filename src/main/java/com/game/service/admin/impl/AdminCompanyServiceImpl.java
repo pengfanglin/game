@@ -12,6 +12,7 @@ import com.game.entity.company.CompanyEntity;
 import com.game.entity.member.MemberEntity;
 import com.game.mapper.MapperFactory;
 import com.game.model.admin.company.AddCompanyModel;
+import com.game.model.admin.company.CompanyIdNameModel;
 import com.game.model.admin.company.CompanyListModel;
 import com.game.service.admin.AdminCompanyService;
 import com.github.pagehelper.PageRowBounds;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -52,5 +54,10 @@ public class AdminCompanyServiceImpl implements AdminCompanyService {
         } catch (DuplicateKeyException e) {
             throw new BusinessException("账号已存在");
         }
+    }
+
+    @Override
+    public List<CompanyIdNameModel> companyIdNameSearch(String name) {
+        return mapperFactory.company.companyIdNameSearch(name);
     }
 }

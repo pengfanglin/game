@@ -5,6 +5,7 @@ import com.fanglin.common.core.page.Page;
 import com.fanglin.common.core.page.PageResult;
 import com.game.controller.common.BaseController;
 import com.game.model.admin.company.AddCompanyModel;
+import com.game.model.admin.company.CompanyIdNameModel;
 import com.game.model.admin.company.CompanyListModel;
 import com.game.service.admin.AdminCompanyService;
 import io.swagger.annotations.Api;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 /**
@@ -49,4 +52,12 @@ public class AdminCompanyController extends BaseController {
         return Ajax.ok();
     }
 
+    @ApiOperation("公司id名称搜索")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "name", value = "公司名称")
+    })
+    @PostMapping("companyIdNameSearch")
+    public Ajax<List<CompanyIdNameModel>> companyIdNameSearch(String name) {
+        return Ajax.ok(companyService.companyIdNameSearch(name));
+    }
 }

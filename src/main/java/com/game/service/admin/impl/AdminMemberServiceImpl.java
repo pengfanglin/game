@@ -4,18 +4,16 @@ import com.fanglin.common.core.others.Assert;
 import com.fanglin.common.core.others.BusinessException;
 import com.fanglin.common.core.page.Page;
 import com.fanglin.common.core.page.PageResult;
-import com.fanglin.common.core.token.TokenInfo;
 import com.fanglin.common.util.EncodeUtils;
 import com.fanglin.common.util.PageUtils;
-import com.fanglin.common.util.TokenUtils;
-import com.game.core.others.AppTokenData;
+import com.fanglin.common.util.ValidatorUtils;
 import com.game.entity.member.MemberEntity;
 import com.game.entity.member.MemberFlowWaterEntity;
 import com.game.enums.member.MemberFlowWaterTypeEnum;
 import com.game.mapper.MapperFactory;
+import com.game.model.admin.member.AddMemberModel;
 import com.game.model.admin.member.MemberListModel;
 import com.game.model.admin.member.MemberListSearch;
-import com.game.model.app.member.MemberLoginResultModel;
 import com.game.service.admin.AdminMemberService;
 import com.github.pagehelper.PageRowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,21 +43,19 @@ public class AdminMemberServiceImpl implements AdminMemberService {
     }
 
     @Override
-    public void addMember(String account, String password) {
-        Assert.isTrue(account.length() <= 10, "账号最多10个字符");
-        Assert.isTrue(account.length() >= 3, "账号最少3个字符");
+    public void addMember(AddMemberModel member) {
+        ValidatorUtils.validate(member);
         try {
-            Long.parseLong(account);
+            Long.parseLong(member.getAccount());
         } catch (Exception e) {
             throw new BusinessException("账号只能为数字");
         }
-        Assert.isTrue(password.length() <= 20, "密码最多20个字符");
-        MemberEntity member = new MemberEntity().setAccount(account);
-        int count = mapperFactory.member.selectCount(member);
+        MemberEntity memberEntity = new MemberEntity().setAccount(member.getAccount());
+        int count = mapperFactory.member.selectCount(memberEntity);
         Assert.isTrue(count == 0, "账号已存在");
-        member.setSalt(UUID.randomUUID().toString().replace("-", ""))
-            .setPassword(EncodeUtils.md5Encode(password, member.getSalt()));
-        mapperFactory.member.insertSelective(member);
+        memberEntity.setSalt(UUID.randomUUID().toString().replace("-", ""))
+            .setPassword(EncodeUtils.md5Encode(member.getPassword(), memberEntity.getSalt()));
+        mapperFactory.member.insertSelective(memberEntity);
     }
 
     @Override

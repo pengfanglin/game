@@ -13,4 +13,13 @@
     </where>
     order by id desc
   </select>
+  <select id="companyIdNameSearch" resultType="companyIdNameModel">
+    select id,name from company
+    <where>
+      <if test=" name != null and name !=''">
+        and name like concat('%',#{name},'%')
+      </if>
+    </where>
+    order by id
+  </select>
 </mapper>

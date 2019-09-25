@@ -5,6 +5,7 @@ import com.fanglin.common.core.others.Ajax;
 import com.fanglin.common.core.page.Page;
 import com.fanglin.common.core.page.PageResult;
 import com.game.controller.common.BaseController;
+import com.game.model.admin.member.AddMemberModel;
 import com.game.model.admin.member.MemberListModel;
 import com.game.model.admin.member.MemberListSearch;
 import com.game.service.admin.AdminMemberService;
@@ -41,13 +42,9 @@ public class AdminMemberController extends BaseController {
     }
 
     @ApiOperation("增加会员")
-    @ApiImplicitParams({
-        @ApiImplicitParam(name = "account", value = "账号", required = true),
-        @ApiImplicitParam(name = "password", value = "密码", required = true)
-    })
     @PostMapping("addMember")
-    public Ajax addMember(@RequestParam String account, @RequestParam String password) {
-        memberService.addMember(account, password);
+    public Ajax addMember(AddMemberModel member) {
+        memberService.addMember(member);
         return Ajax.ok();
     }
 
