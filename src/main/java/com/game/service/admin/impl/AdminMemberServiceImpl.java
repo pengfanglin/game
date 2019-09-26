@@ -4,9 +4,7 @@ import com.fanglin.common.core.others.Assert;
 import com.fanglin.common.core.others.BusinessException;
 import com.fanglin.common.core.page.Page;
 import com.fanglin.common.core.page.PageResult;
-import com.fanglin.common.util.EncodeUtils;
-import com.fanglin.common.util.PageUtils;
-import com.fanglin.common.util.ValidatorUtils;
+import com.fanglin.common.util.*;
 import com.game.entity.member.MemberEntity;
 import com.game.entity.member.MemberFlowWaterEntity;
 import com.game.enums.member.MemberFlowWaterTypeEnum;
@@ -14,6 +12,7 @@ import com.game.mapper.MapperFactory;
 import com.game.model.admin.member.AddMemberModel;
 import com.game.model.admin.member.MemberListModel;
 import com.game.model.admin.member.MemberListSearch;
+import com.game.model.admin.member.UpdateMemberModel;
 import com.game.service.admin.AdminMemberService;
 import com.github.pagehelper.PageRowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +77,26 @@ public class AdminMemberServiceImpl implements AdminMemberService {
             new MemberFlowWaterEntity().setMember_id(memberId).setType(MemberFlowWaterTypeEnum.ADMIN_TOP_UP).setValue(new BigDecimal(value))
         );
         Assert.isTrue(count > 0, "会员流水添加失败");
+    }
+
+    @Override
+    public void updateMember(UpdateMemberModel member) {
+        ValidatorUtils.validate(member);
+        MemberEntity memberEntity = mapperFactory.member.accountExist(member.getAccount());
+        if (OthersUtils.notEmpty(member.getAccount())) {
+            try {
+                Long.parseLong(member.getAccount());
+            } catch (Exception e) {
+                throw new BusinessException("账号只能为数字");
+            }
+            Assert.isTrue(memberEntity == null || member.getId().equals(memberEntity.getId()), "账号已存在");
+        }
+        memberEntity = BeanUtils.copy(member, MemberEntity.class);
+        if (OthersUtils.notEmpty(member.getPassword())) {
+            String salt = mapperFactory.member.getSlat(member.getId());
+            memberEntity.setPassword(EncodeUtils.md5Encode(member.getPassword(), salt));
+        }
+        int count = mapperFactory.member.updateByPrimaryKeySelective(memberEntity);
+        Assert.isTrue(count > 0, "修改失败");
     }
 }

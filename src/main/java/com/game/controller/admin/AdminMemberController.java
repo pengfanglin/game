@@ -8,6 +8,7 @@ import com.game.controller.common.BaseController;
 import com.game.model.admin.member.AddMemberModel;
 import com.game.model.admin.member.MemberListModel;
 import com.game.model.admin.member.MemberListSearch;
+import com.game.model.admin.member.UpdateMemberModel;
 import com.game.service.admin.AdminMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -55,6 +56,13 @@ public class AdminMemberController extends BaseController {
     @PostMapping("deleteMember")
     public Ajax deleteMember(@RequestParam Integer id) {
         memberService.deleteMember(id);
+        return Ajax.ok();
+    }
+
+    @ApiOperation("修改会员")
+    @PostMapping("updateMember")
+    public Ajax updateMember(UpdateMemberModel member) {
+        memberService.updateMember(member);
         return Ajax.ok();
     }
 

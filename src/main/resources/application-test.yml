@@ -49,3 +49,8 @@ common:
     version: 1.0.0
   http:
     enable: true
+  log:
+    enable: true
+    request:
+      enable: true
+      level: info

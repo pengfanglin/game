@@ -48,4 +48,22 @@ public interface MemberMapper extends Mapper<MemberEntity> {
      */
     @Update("UPDATE members SET balance=balance+#{value} WHERE id=#{memberId}")
     int addBalance(@Param("memberId") Integer memberId, @Param("value") Float value);
+
+    /**
+     * 账号已存在
+     *
+     * @param account 账号
+     * @return
+     */
+    @Select("SELECT id,salt FROM members WHERE account=#{account}")
+    MemberEntity accountExist(@Param("account") String account);
+
+    /**
+     * 查询会员盐值
+     *
+     * @param id 会员id
+     * @return
+     */
+    @Select("select salt from members where id=#{id}")
+    String getSlat(@Param("id") Integer id);
 }

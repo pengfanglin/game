@@ -6,6 +6,7 @@ import com.fanglin.common.core.page.PageResult;
 import com.game.model.admin.member.AddMemberModel;
 import com.game.model.admin.member.MemberListModel;
 import com.game.model.admin.member.MemberListSearch;
+import com.game.model.admin.member.UpdateMemberModel;
 
 /**
  * 后台用户服务
@@ -26,20 +27,30 @@ public interface AdminMemberService {
 
     /**
      * 增加会员
+     *
      * @param member 会员信息
      */
     void addMember(AddMemberModel member);
 
     /**
      * 删除会员
+     *
      * @param id 会员id
      */
     void deleteMember(Integer id);
 
     /**
      * 充值
+     *
      * @param memberId 会员id
-     * @param value 充值金额
+     * @param value    充值金额
      */
     void topUp(Integer memberId, Float value);
+
+    /**
+     * 修改会员
+     *
+     * @param member
+     */
+    void updateMember(UpdateMemberModel member);
 }
