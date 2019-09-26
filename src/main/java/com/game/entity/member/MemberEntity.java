@@ -20,7 +20,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Accessors(chain = true)
-@Table(name = "member")
+@Table(name = "members")
 public class MemberEntity {
     /**
      * 主键
@@ -35,11 +35,15 @@ public class MemberEntity {
     /**
      * 手机号
      */
-    private Long mobile;
+    private String mobile;
     /**
      * 密码
      */
     private String password;
+    /**
+     * 账号
+     */
+    private String headImage;
     /**
      * 密码盐值
      */

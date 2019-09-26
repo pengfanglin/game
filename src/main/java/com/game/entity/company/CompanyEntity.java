@@ -35,7 +35,7 @@ public class CompanyEntity {
     /**
      * 手机号
      */
-    private Long mobile;
+    private String mobile;
     /**
      * 密码
      */

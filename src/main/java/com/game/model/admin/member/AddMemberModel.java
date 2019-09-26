@@ -25,27 +25,31 @@ import java.util.Date;
 @ApiModel("增加会员")
 public class AddMemberModel {
 
-    @ApiModelProperty("账号")
+    @ApiModelProperty(value = "账号", required = true)
     @NotBlank(message = "请填写账号")
     @Length(min = 3, max = 20, message = "账号3-20个字符")
     private String account;
 
-    @ApiModelProperty("密码")
+    @ApiModelProperty(value = "密码", required = true)
     @NotBlank(message = "请填写密码")
     @Length(max = 20, message = "密码最长20个字符")
     private String password;
 
-    @ApiModelProperty("用户名")
+    @ApiModelProperty(value = "用户名", required = true)
     @NotBlank(message = "请填写用户名")
     @Length(max = 20, message = "用户名最长20个字符")
     private String username;
 
-    @ApiModelProperty("头像")
+    @ApiModelProperty("手机号")
+    @Length(max = 11, message = "手机号最长11个字符")
+    private String mobile;
+
+    @ApiModelProperty(value = "头像", required = true)
     @NotBlank(message = "请上传头像")
     @Length(max = 100, message = "头像最长100个字符")
     private String headImage;
 
-    @ApiModelProperty("公司id")
+    @ApiModelProperty(value = "公司id", required = true)
     @NotNull(message = "请选择所属公司")
     private Integer companyId;
 }

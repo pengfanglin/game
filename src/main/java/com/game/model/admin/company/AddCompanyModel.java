@@ -40,7 +40,7 @@ public class AddCompanyModel {
 
     @ApiModelProperty("联系方式")
     @NotNull(message = "联系方式不能为空")
-    private Long mobile;
+    private String mobile;
 
     @ApiModelProperty("到期时间")
     private Date expireTime;

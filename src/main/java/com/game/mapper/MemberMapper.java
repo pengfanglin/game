@@ -28,8 +28,8 @@ public interface MemberMapper extends Mapper<MemberEntity> {
      * @param account 账号
      * @return
      */
-    @Select("select id,password,salt,disable from member where account=#{account}")
-    MemberModel login(@Param("mobile") String account);
+    @Select("select id,password,salt,disable from members where account=#{account}")
+    MemberModel login(@Param("account") String account);
 
     /**
      * 会员列表
@@ -46,6 +46,6 @@ public interface MemberMapper extends Mapper<MemberEntity> {
      * @param value    金额
      * @return
      */
-    @Update("UPDATE member SET balance=balance+#{value} WHERE id=#{memberId}")
+    @Update("UPDATE members SET balance=balance+#{value} WHERE id=#{memberId}")
     int addBalance(@Param("memberId") Integer memberId, @Param("value") Float value);
 }

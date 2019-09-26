@@ -54,7 +54,11 @@ public class AdminMemberServiceImpl implements AdminMemberService {
         int count = mapperFactory.member.selectCount(memberEntity);
         Assert.isTrue(count == 0, "账号已存在");
         memberEntity.setSalt(UUID.randomUUID().toString().replace("-", ""))
-            .setPassword(EncodeUtils.md5Encode(member.getPassword(), memberEntity.getSalt()));
+            .setPassword(EncodeUtils.md5Encode(member.getPassword(), memberEntity.getSalt()))
+            .setUsername(member.getUsername())
+            .setCompanyId(member.getCompanyId())
+            .setHeadImage(member.getHeadImage())
+            .setMobile(member.getMobile());
         mapperFactory.member.insertSelective(memberEntity);
     }
 
