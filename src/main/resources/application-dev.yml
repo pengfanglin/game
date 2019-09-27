@@ -28,8 +28,8 @@ spring:
       max-request-size: 50MB
   datasource:
     url: jdbc:mysql://47.101.151.125:3306/game?useSSL=false&serverTimezone=CTT&characterEncoding=UTF-8&autoReconnect=true
-    username: root
-    password: 123456
+    username: game
+    password: 123456789
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:

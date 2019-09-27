@@ -34,10 +34,10 @@ public class CodeGenerator {
         generator.setPackageConfig(packageConfig);
         // 数据源配置
         DataSourceConfig dataSourceConfig = new DataSourceConfig()
-            .setUrl("jdbc:mysql://127.0.0.1:3306/qjz")
+            .setUrl("jdbc:mysql://127.0.0.1:3306/game")
             .setDriverName("com.mysql.cj.jdbc.Driver")
-            .setUsername("root")
-            .setPassword("123456");
+            .setUsername("game")
+            .setPassword("123456789");
         generator.setDataSource(dataSourceConfig);
         generator.execute();
     }
